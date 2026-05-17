@@ -1,0 +1,532 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage proof v4 â€” anzacivic.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: #efd886;
+    --bg-card: #fdfaf2;
+    --bg-card-deep: #f6efdc;
+    --ink: #2a221a;
+    --ink-soft: #5c4a2a;
+    --ink-mute: #8a7a55;
+    --rule: #ede2c4;
+    --rule-deep: #d4c290;
+    --red: #8b1a1a;
+    --red-deep: #6e1313;
+    --gold: #c49c00;
+    --gold-deep: #a78400;
+    --cream-dark: #3a2e1a;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg-page);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 24px 16px 40px;
+  }
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    box-shadow: 0 4px 20px rgba(58, 46, 26, 0.18);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .topbar {
+    background: var(--bg-card-deep);
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    padding: 8px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar a { color: var(--red); text-decoration: none; }
+  .topbar a:hover { text-decoration: underline; }
+  .topbar .sep { color: var(--ink-mute); margin: 0 10px; }
+
+  header.masthead {
+    padding: 24px 24px 18px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .logo {
+    display: inline-block;
+    width: 340px;
+    max-width: 100%;
+    height: auto;
+  }
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  nav.primary {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav.primary a {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 13px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav.primary a.active {
+    color: var(--red);
+    border-bottom-color: var(--red);
+    font-weight: 600;
+  }
+  nav.primary a:hover { color: var(--red); }
+
+  .hero {
+    background: var(--bg-card-deep);
+    padding: 44px 32px 40px;
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    gap: 36px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top left, rgba(196,156,0,0.08), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(139,26,26,0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .postcard {
+    background: #fff;
+    padding: 12px 12px 14px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.05),
+      0 4px 14px rgba(58,46,26,0.18),
+      0 12px 30px rgba(58,46,26,0.08);
+    border: 1px solid var(--rule);
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 1;
+  }
+  .postcard img {
+    display: block;
+    width: 100%;
+    max-width: 416px;
+    height: auto;
+    border: 1px solid #eee5cc;
+  }
+  .postcard .caption {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dotted var(--rule-deep);
+  }
+  .hero-text {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .hero-text h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    font-style: italic;
+    color: var(--red);
+  }
+  .hero-text p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 22px;
+    max-width: 360px;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--red);
+    color: #fdf6e8;
+    padding: 11px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .hero-cta:hover { background: var(--red-deep); }
+
+  main { padding: 0; }
+
+  .section { padding: 40px 32px; }
+  .section + .section { border-top: 1px solid var(--rule); }
+
+  .section-eyebrow {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--red);
+    text-align: center;
+    margin: 0 0 20px;
+  }
+  .section-body {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .then-now { background: var(--bg-card-deep); padding: 40px 32px; }
+  .then-now-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .frame {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(58, 46, 26, 0.08);
+  }
+  .frame img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .frame .caption {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 8px;
+    padding: 4px 0;
+  }
+  .frame .caption .year { color: var(--gold-deep); font-weight: 600; font-style: normal; letter-spacing: 0.06em; font-size: 11px; text-transform: uppercase; display: block; margin-bottom: 2px;}
+
+  .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .feature {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 18px;
+    text-align: center;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .feature:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 156, 0, 0.15);
+  }
+  .feature h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 20px;
+    color: var(--red);
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .feature p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0 0 14px;
+  }
+  .feature a {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .feature a:hover { color: var(--red-deep); text-decoration: underline; }
+
+  .events { background: var(--bg-card-deep); padding: 40px 32px; }
+  .events-list { max-width: 720px; margin: 24px auto 0; }
+  .event {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-deep);
+    align-items: center;
+  }
+  .event:last-child { border-bottom: none; }
+  .event-date {
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 6px 0;
+  }
+  .event-date .mon { font-size: 10px; letter-spacing: 0.12em; color: var(--gold-deep); text-transform: uppercase; font-weight: 600; }
+  .event-date .day { font-family: 'Lora', Georgia, serif; font-size: 22px; font-weight: 600; color: var(--red); line-height: 1; }
+  .event-title { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .event-meta { font-size: 12.5px; color: var(--ink-mute); margin-top: 2px; }
+  .event a { font-size: 12px; color: var(--red); text-decoration: none; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .cta-row {
+    background: var(--cream-dark);
+    color: #f6efdc;
+    padding: 32px;
+    text-align: center;
+  }
+  .cta-row h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 24px;
+    margin: 0 0 8px;
+    color: #f6efdc;
+  }
+  .cta-row p { margin: 0 0 18px; font-size: 14px; opacity: 0.9; }
+  .btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--cream-dark);
+    padding: 11px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #e0b400; }
+
+  footer {
+    background: var(--cream-dark);
+    color: #d0c8b0;
+    padding: 24px 32px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.7;
+    border-top: 3px solid var(--gold);
+  }
+  footer .org { color: #f6efdc; font-weight: 600; font-family: 'Lora', serif; font-size: 14px; }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: #e0b400; text-decoration: underline; }
+  footer .fine { margin-top: 12px; font-size: 10.5px; color: #a08a55; }
+
+  @media (max-width: 720px) {
+    body { padding: 8px; }
+    .topbar { font-size: 11.5px; padding: 8px 16px; }
+    .topbar .sep { display: block; height: 0; visibility: hidden; }
+    header.masthead { padding: 20px 16px 14px; }
+    .logo { width: 260px; }
+    nav.primary a { padding: 10px 11px; font-size: 11.5px; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 32px 20px;
+      gap: 24px;
+    }
+    .postcard { transform: rotate(0); margin: 0 auto; max-width: 360px; }
+    .hero-text { text-align: center; }
+    .hero-text h1 { font-size: 26px; }
+    .hero-text p { margin-left: auto; margin-right: auto; }
+    .section, .then-now, .events { padding: 28px 20px; }
+    .three-up { grid-template-columns: 1fr; }
+    .then-now-grid { grid-template-columns: 1fr; }
+    .frame img { height: 220px; }
+    .event { grid-template-columns: 64px 1fr; row-gap: 4px; }
+    .event a { grid-column: 2; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="topbar">
+    PO Box 391000, Anza, CA 92539 <span class="sep">Â·</span>
+    951-330-4411 <span class="sep">Â·</span>
+    <a href="mailto:anzacivic@gmail.com">anzacivic@gmail.com</a>
+  </div>
+
+  <header class="masthead">
+    <img class="logo" src="ACIL-Logo.png" alt="Anza Civic Improvement League">
+    <div class="tagline">Est. 1914 Â· Stewards of Minor Park &amp; the Little Red Schoolhouse</div>
+  </header>
+
+  <nav class="primary">
+    <a class="active" href="#">Home</a>
+    <a href="#">History</a>
+    <a href="#">Rent</a>
+    <a href="#">Calendar</a>
+    <a href="#">Anza Days</a>
+    <a href="#">Gallery</a>
+    <a href="#">Membership</a>
+    <a href="#">Volunteer</a>
+    <a href="#">Give</a>
+  </nav>
+
+  <div class="hero">
+    <div class="postcard">
+      <img src="school-current.jpg" alt="The Little Red Schoolhouse at Minor Park">
+      <div class="caption">The Little Red Schoolhouse Â· Minor Park, Anza</div>
+    </div>
+    <div class="hero-text">
+      <span class="hero-label">Anza, California Â· Since 1914</span>
+      <h1>A small town with a long memory.</h1>
+      <p>For over a century, neighbors have kept Minor Park and the Little Red Schoolhouse alive for the next generation. We're glad you're here.</p>
+      <a class="hero-cta" href="#">Plan your visit â†’</a>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="section">
+      <span class="section-eyebrow">Our Purpose</span>
+      <h2 class="section-title">Restored. Stewarded. Open to all.</h2>
+      <div class="section-body">
+        ACIL owns and maintains Minor Park in Anza, California. The Little Red Schoolhouse, built in 1914, sits within the park. Both are available to rent for weddings, meetings, and gatherings. We are a 501(c)(3) nonprofit, run by neighbors.
+      </div>
+    </section>
+
+    <section class="then-now">
+      <span class="section-eyebrow">A Century of Stewardship</span>
+      <h2 class="section-title">Then &amp; now</h2>
+      <div class="section-body">The same little schoolhouse â€” and the same volunteer spirit â€” across generations.</div>
+      <div class="then-now-grid">
+        <div class="frame">
+          <img src="school-old.jpg" alt="Little Red Schoolhouse, historical">
+          <div class="caption"><span class="year">circa 1914</span>The schoolhouse, soon after it was built.</div>
+        </div>
+        <div class="frame">
+          <img src="school-current.jpg" alt="Little Red Schoolhouse, present day">
+          <div class="caption"><span class="year">today</span>The schoolhouse in Minor Park, still in use.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section-eyebrow">What you can do</span>
+      <h2 class="section-title">Visit Â· Rent Â· Give</h2>
+      <div class="three-up">
+        <div class="feature">
+          <h3>Rent the schoolhouse</h3>
+          <p>Host your wedding, meeting, or memorial in a 110-year-old landmark surrounded by mountain views.</p>
+          <a href="#">See availability â†’</a>
+        </div>
+        <div class="feature">
+          <h3>Become a member</h3>
+          <p>Annual memberships start at $25 and keep the lights on at Minor Park.</p>
+          <a href="#">Join ACIL â†’</a>
+        </div>
+        <div class="feature">
+          <h3>Buy a brick</h3>
+          <p>Permanent recognition in the park walkway. Honor a family member, a milestone, or just leave your mark.</p>
+          <a href="#">Donate â†’</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="events">
+      <span class="section-eyebrow">Coming up</span>
+      <h2 class="section-title">What's happening at the park</h2>
+      <div class="events-list">
+        <div class="event">
+          <div class="event-date"><div class="mon">May</div><div class="day">24</div></div>
+          <div>
+            <div class="event-title">Anza Days 2026 â€” Parade &amp; Festival</div>
+            <div class="event-meta">All day Â· Minor Park Â· Free admission</div>
+          </div>
+          <a href="#">Details â†’</a>
+        </div>
+        <div class="event">
+          <div class="event-date"><div class="mon">Jun</div><div class="day">07</div></div>
+          <div>
+            <div class="event-title">Monthly Board Meeting</div>
+            <div class="event-meta">6:30 PM Â· Schoolhouse Â· Public welcome</div>
+          </div>
+          <a href="#">Details â†’</a>
+        </div>
+        <div class="event">
+          <div class="event-date"><div class="mon">Jun</div><div class="day">21</div></div>
+          <div>
+            <div class="event-title">Park Cleanup Day</div>
+            <div class="event-meta">8 AM â€“ noon Â· Volunteers needed</div>
+          </div>
+          <a href="#">Sign up â†’</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-row">
+      <h2>Have an event in mind?</h2>
+      <p>Check availability and we'll get back to you within a few days.</p>
+      <a class="btn" href="#">Inquire about renting â†’</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="org">Anza Civic Improvement League</div>
+    <div>PO Box 391000, Anza, CA 92539 Â· 951-330-4411 Â· <a href="mailto:anzacivic@gmail.com">anzacivic@gmail.com</a></div>
+    <div class="fine">Â© 2026 ACIL Â· A 501(c)(3) nonprofit Â· All rights reserved</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
+
