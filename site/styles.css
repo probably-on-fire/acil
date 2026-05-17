@@ -571,7 +571,7 @@ footer .fine { margin-top: 12px; font-size: 10.5px; color: #a08a55; }
   margin-bottom: 6px;
 }
 
-/* ===== Document download list ===== */
+/* ===== Document download list (preview + download two-action) ===== */
 .doc-list {
   list-style: none;
   padding: 0;
@@ -580,24 +580,28 @@ footer .fine { margin-top: 12px; font-size: 10.5px; color: #a08a55; }
   grid-template-columns: 1fr;
   gap: 8px;
 }
-.doc-list a {
+.doc-list li {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 12px 16px;
+  align-items: stretch;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 3px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.doc-list li:hover { border-color: var(--gold); }
+.doc-list .doc-link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 14px;
+  flex: 1 1 auto;
   text-decoration: none;
   color: var(--ink);
   font-size: 14.5px;
-  transition: border-color 0.15s, transform 0.1s, background 0.15s;
+  transition: background 0.15s;
 }
-.doc-list a:hover {
-  border-color: var(--gold);
-  background: #fffaeb;
-  transform: translateY(-1px);
-}
+.doc-list .doc-link:hover { background: #fffaeb; }
 .doc-list .doc-icon {
   flex: 0 0 auto;
   font-family: 'Lora', Georgia, serif;
@@ -612,7 +616,32 @@ footer .fine { margin-top: 12px; font-size: 10.5px; color: #a08a55; }
   text-transform: uppercase;
 }
 .doc-list .doc-name { flex: 1 1 auto; }
-.doc-list .doc-meta { color: var(--ink-mute); font-size: 12px; }
+.doc-list .doc-meta {
+  color: var(--ink-mute);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.doc-list .doc-download {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 16px;
+  border-left: 1px solid var(--rule);
+  background: var(--bg-card-deep);
+  text-decoration: none;
+  color: var(--gold-deep);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.doc-list .doc-download:hover {
+  background: var(--gold);
+  color: var(--cream-dark);
+}
 
 /* ===== Google Calendar embed wrapper ===== */
 .calendar-embed {
@@ -749,4 +778,13 @@ footer .fine { margin-top: 12px; font-size: 10.5px; color: #a08a55; }
   .error-block { padding: 40px 20px 60px; }
   .error-block .big-404 { font-size: 72px; }
   .rate-table th, .rate-table td { padding: 8px; font-size: 13px; }
+  .doc-list li { flex-wrap: wrap; }
+  .doc-list .doc-link { width: 100%; }
+  .doc-list .doc-download {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    width: 100%;
+    padding: 10px 14px;
+    justify-content: center;
+  }
 }
